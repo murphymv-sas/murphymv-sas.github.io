@@ -4,7 +4,7 @@ navbar:
   title: "Michael Murphy"
   left:
   - text: "Home"    
-    href: index.html
+    href: Index.html
   - text: "Project"
     href: project.html
   - texT: "About"
