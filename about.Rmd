@@ -1,5 +1,5 @@
 ---
-title: "project"
+title: "about"
 author: "Michael Murphy"
 date: "4/15/2021"
 output: html_document
@@ -9,4 +9,4 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## This is a test of the Project Rmd
+## Testing about.rmd
