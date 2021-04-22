@@ -1,15 +1,15 @@
 name: "Michael Murphy's Website"
-outpur_dir: "."
+output_dir: "."
 navbar:
   title: "Michael Murphy"
   left:
-  - text: "Home"    
-    href: index.html
-  - text: "Project"
-    href: project.html
-  - texT: "About"
-    href: about.html
-  
+    - text: "Home"
+      href: index.html
+    - text: "Project"
+      href: project.html
+    - text: "About"
+      href: about.html
+
 output:
   html_document:
     theme: simplex
