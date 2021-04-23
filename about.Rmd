@@ -1,7 +1,7 @@
 ---
 title: "about"
 author: "Michael Murphy"
-date: "4/15/2021"
+date: "4/25/2021"
 output: html_document
 ---
 
@@ -9,4 +9,10 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Testing about.rmd
+## About Michael Murphy   
+
+#### Thank you for visiting! Michael Murphy is a Master of Behavioral and Decision Sciences (MBDS) candidate at the University of Pennsylvania. He earned his B.S. in Neuroscience with a Health Studies Certificate from Dickinson College in Carlisle, PA in May of 2020. His professional interests include health, design thinking, and sustainability.  
+
+#### After graduating from the MBDS program in August 2021, Michael plans to work as a consultant and/or with health tech startups. In his free time he enjoys running with his dog Oscar, attending CrossFit classes, and listening to podcasts.  
+
+### You can connect with Michael via [email](murphymv@sas.upenn.edu) or [LinkedIn](https://www.linkedin.com/in/-michael-murphy-/)
