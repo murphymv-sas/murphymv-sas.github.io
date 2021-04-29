@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Electric Eels: Walid Hedidar, Aamia Malik, Michael Murphy, Jon Sirota, Cory Winkler, Jen Xue" />
+
+
+<title>hw10</title>
+
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 41px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+.section h2 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+.section h3 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+.section h4 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+.section h5 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+.section h6 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Michael Murphy</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="project.html">HW9</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="hw10.html">HW10</a>
+</li>
+<li>
+  <a href="finalproject.html">Final Project</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">hw10</h1>
+<h4 class="author">Electric Eels: Walid Hedidar, Aamia Malik, Michael Murphy, Jon Sirota, Cory Winkler, Jen Xue</h4>
+<h4 class="date">4/26/2021</h4>
+
+</div>
+
+
+<p>[SCRAP THIS] The options for each name are the following:</p>
+<ol style="list-style-type: decimal">
+<li><p>I have texted in the last 7 days</p></li>
+<li><p>I have met during my time in MBDS</p></li>
+<li><p>Is my friend</p></li>
+<li><p>I ask for advice/help</p></li>
+<li><p>Asks me for help/advice</p></li>
+</ol>
+<p>–</p>
+<p>In this report, we are interested in conducting a network analysis among the BDS-516 Spring 2021 class. First, we import the data and set up the relevant libraries (<code>include = FALSE</code>).</p>
+<div id="prepare-the-data-for-the-network-analysis-create-a-separate-edge-and-node-list" class="section level1">
+<h1>1) Prepare the data for the network analysis (create a separate edge and node list)</h1>
+<p>We beginw with our separate node and edge lists, titled <code>hw_nodelist</code> and <code>hw_edgelist</code>.</p>
+<div id="network-graphical-visualization" class="section level3">
+<h3>Network graphical visualization</h3>
+<p>Here, we show ….</p>
+<p>There are a few key insights from this visualization: 1) This appears to resemble a scale-free network (some respondents do not know others in the network well, while others appear to know many others) 2) Respondent 39 appears to be the least connected to the rest of the network</p>
+<pre class="r"><code>library(igraph)</code></pre>
+<pre><code>## Warning: package &#39;igraph&#39; was built under R version 4.0.4</code></pre>
+<pre><code>## 
+## Attaching package: &#39;igraph&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:lubridate&#39;:
+## 
+##     %--%, union</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     as_data_frame, groups, union</code></pre>
+<pre><code>## The following objects are masked from &#39;package:purrr&#39;:
+## 
+##     compose, simplify</code></pre>
+<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     crossing</code></pre>
+<pre><code>## The following object is masked from &#39;package:tibble&#39;:
+## 
+##     as_data_frame</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     decompose, spectrum</code></pre>
+<pre><code>## The following object is masked from &#39;package:base&#39;:
+## 
+##     union</code></pre>
+<pre class="r"><code>newnetwork &lt;- graph_from_data_frame(d = hw_edgelist, vertices = hw_nodelist, directed = TRUE)
+plot(newnetwork, edge.arrow.size = 0.1, vertex.size = 3)</code></pre>
+<p><img src="hw10_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="descriptive-stats" class="section level3">
+<h3>Descriptive stats</h3>
+<p>The network has a reciprocity and transitivity of ~0.5, suggesting that about half of the time, a respondent in the network indicated being directly and indirectly tied to someone else, when the respondent on the other end did not agree. This may partially be the result of measurement error.</p>
+<pre class="r"><code>edge_density(newnetwork, loops=F)</code></pre>
+<pre><code>## [1] 0.4442308</code></pre>
+<pre class="r"><code>reciprocity(newnetwork)</code></pre>
+<pre><code>## [1] 0.4992785</code></pre>
+<pre class="r"><code>transitivity(newnetwork, type=&quot;global&quot;)</code></pre>
+<pre><code>## [1] 0.5005313</code></pre>
+<pre class="r"><code>diameter(newnetwork, directed=F, weights=NA)</code></pre>
+<pre><code>## [1] 5</code></pre>
+<pre class="r"><code>deg &lt;- degree(newnetwork, mode=&quot;all&quot;)
+mean(deg)</code></pre>
+<pre><code>## [1] 34.65</code></pre>
+<pre class="r"><code>plot(newnetwork, vertex.size=deg/10, edge.arrow.size = 0.1)</code></pre>
+<p><img src="hw10_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>hist(deg, breaks = 20, main=&quot;Histogram of node degree&quot;)</code></pre>
+<p><img src="hw10_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+</div>
+<div id="distances" class="section level3">
+<h3>Distances</h3>
+<p>Centralization of 0.735 suggests that the network is relatively highly centralized around particiular respondents; in other words, certain respondents are common “connections” to the rest of the network.</p>
+<pre class="r"><code>degree(newnetwork, mode=&quot;in&quot;)</code></pre>
+<pre><code>##  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 
+##  9 36  6 10 38 41  1 24 14 10  6 18 12  5 12  4  1 46 28 23 20 29 10  7  3  8 16 43 37 18 32 13 13 28 25 27 
+## 37 38 39 40 
+##  2  9  1  8</code></pre>
+<pre class="r"><code>centr_degree(newnetwork, mode=&quot;in&quot;, normalized=T)</code></pre>
+<pre><code>## $res
+##  [1]  9 36  6 10 38 41  1 24 14 10  6 18 12  5 12  4  1 46 28 23 20 29 10  7  3  8 16 43 37 18 32 13 13 28 25
+## [36] 27  2  9  1  8
+## 
+## $centralization
+## [1] 0.7352564
+## 
+## $theoretical_max
+## [1] 1560</code></pre>
+<pre class="r"><code>closeness(newnetwork, mode=&quot;all&quot;, weights=NA)</code></pre>
+<pre><code>##           1           2           3           4           5           6           7           8           9 
+## 0.017857143 0.016129032 0.011494253 0.008620690 0.013698630 0.016666667 0.012987013 0.015151515 0.013513514 
+##          10          11          12          13          14          15          16          17          18 
+## 0.013698630 0.011363636 0.012658228 0.012345679 0.008695652 0.014285714 0.012195122 0.011627907 0.015384615 
+##          19          20          21          22          23          24          25          26          27 
+## 0.014492754 0.016393443 0.014705882 0.013333333 0.015151515 0.012500000 0.010638298 0.011494253 0.012820513 
+##          28          29          30          31          32          33          34          35          36 
+## 0.018867925 0.015873016 0.012987013 0.015625000 0.013698630 0.012500000 0.015384615 0.016129032 0.015384615 
+##          37          38          39          40 
+## 0.010869565 0.014492754 0.008064516 0.010989011</code></pre>
+<pre class="r"><code>betweenness(newnetwork, directed=T, weights=NA)</code></pre>
+<pre><code>##           1           2           3           4           5           6           7           8           9 
+##  84.0616886  28.5512815   0.0000000   0.0000000  13.1250010  91.5637434  22.3636950   0.0000000   0.0000000 
+##          10          11          12          13          14          15          16          17          18 
+##   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000  15.5350122   0.0000000  20.0000000  68.0050823 
+##          19          20          21          22          23          24          25          26          27 
+##   0.0000000  55.4739079   0.0000000   0.0000000  11.2174072  18.5381747   0.0000000   0.0000000   0.0000000 
+##          28          29          30          31          32          33          34          35          36 
+## 197.9156390   0.0000000   1.2811184  23.4809215   4.4627833   0.2936508  28.2161521  22.9380115  48.1758511 
+##          37          38          39          40 
+##   0.0000000   6.1281513   0.0000000  12.6727273</code></pre>
+<pre class="r"><code>mean_distance(newnetwork, directed=T)</code></pre>
+<pre><code>## [1] 1.945055</code></pre>
+<pre class="r"><code>distances(newnetwork, weights=NA)</code></pre>
+<pre><code>##    1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38
+## 1  0 1 2 3 2 1 2 1 1  1  2  2  1  3  1  1  1  2  1  1  1  2  1  2  1  2  2  1  1  2  1  1  1  1  1  1  1  1
+## 2  1 0 2 3 1 1 1 1 2  2  2  2  2  2  2  2  2  1  1  2  1  2  1  2  2  1  1  1  1  2  1  2  2  1  1  1  2  1
+## 3  2 2 0 4 2 2 1 2 2  2  2  3  2  2  2  2  3  2  2  1  2  2  1  3  3  2  3  2  2  2  2  3  3  1  2  2  3  2
+## 4  3 3 4 0 3 2 3 3 2  3  3  3  4  4  3  3  4  2  3  3  3  2  3  1  4  4  3  2  2  3  3  3  3  3  3  3  4  3
+## 5  2 1 2 3 0 1 2 2 2  2  2  1  2  3  2  2  3  1  1  2  2  2  2  2  3  1  1  1  2  2  1  2  2  1  1  2  3  1
+## 6  1 1 2 2 1 0 1 1 2  2  2  2  2  2  2  2  2  1  1  1  1  1  1  1  2  2  1  1  1  2  1  2  2  1  1  2  2  2
+## 7  2 1 1 3 2 1 0 2 1  2  3  2  3  1  2  2  3  2  1  2  2  2  2  2  3  1  2  1  1  2  2  2  2  2  2  2  3  2
+## 8  1 1 2 3 2 1 2 0 2  2  2  2  2  3  1  2  2  1  2  1  2  2  1  2  2  2  2  1  2  1  1  1  2  1  1  1  2  1
+## 9  1 2 2 2 2 2 1 2 0  2  2  3  2  2  2  2  2  2  2  1  2  2  2  2  2  2  2  2  2  2  2  2  2  1  1  2  2  2
+## 10 1 2 2 3 2 2 2 2 2  0  2  2  2  3  2  2  2  2  2  1  2  2  2  2  2  2  2  1  2  1  1  1  2  2  1  1  2  1
+## 11 2 2 2 3 2 2 3 2 2  2  0  2  2  4  2  3  3  1  2  1  2  2  2  2  3  2  3  2  2  1  2  3  3  1  2  2  3  2
+## 12 2 2 3 3 1 2 2 2 3  2  2  0  2  3  1  2  2  1  2  2  2  2  2  2  3  2  2  1  2  2  2  1  1  2  2  1  3  2
+## 13 1 2 2 4 2 2 3 2 2  2  2  2  0  4  2  2  2  2  2  1  2  2  1  3  2  2  2  2  2  2  1  2  2  2  2  1  2  2
+## 14 3 2 2 4 3 2 1 3 2  3  4  3  4  0  3  3  4  3  2  3  3  3  3  3  4  2  3  2  2  3  3  3  3  3  3  3  4  3
+## 15 1 2 2 3 2 2 2 1 2  2  2  1  2  3  0  2  2  1  2  2  1  1  1  2  2  3  2  1  1  2  2  1  1  1  2  2  2  2
+## 16 1 2 2 3 2 2 2 2 2  2  3  2  2  3  2  0  2  2  2  2  2  2  1  2  2  3  2  1  2  3  2  2  2  2  2  2  2  2
+## 17 1 2 3 4 3 2 3 2 2  2  3  2  2  4  2  2  0  2  2  2  2  3  2  3  2  3  2  2  2  2  2  2  2  2  2  1  1  2
+## 18 2 1 2 2 1 1 2 1 2  2  1  1  2  3  1  2  2  0  2  1  2  1  1  1  3  2  2  1  2  1  1  2  2  1  1  1  3  2
+## 19 1 1 2 3 1 1 1 2 2  2  2  2  2  2  2  2  2  2  0  1  2  2  1  2  2  2  2  1  2  2  1  2  2  1  1  2  2  2
+## 20 1 2 1 3 2 1 2 1 1  1  1  2  1  3  2  2  2  1  1  0  1  1  2  2  2  1  2  1  1  1  2  2  2  1  1  1  2  1
+## 21 1 1 2 3 2 1 2 2 2  2  2  2  2  3  1  2  2  2  2  1  0  2  1  2  2  2  2  1  2  1  1  1  2  2  1  1  2  1
+## 22 2 2 2 2 2 1 2 2 2  2  2  2  2  3  1  2  3  1  2  1  2  0  2  1  3  2  2  1  2  2  1  2  2  2  1  2  3  2
+## 23 1 1 1 3 2 1 2 1 2  2  2  2  1  3  1  1  2  1  1  2  1  2  0  2  2  2  2  1  1  2  1  2  2  2  1  2  2  2
+## 24 2 2 3 1 2 1 2 2 2  2  2  2  3  3  2  2  3  1  2  2  2  1  2  0  3  3  2  1  1  2  2  2  2  2  2  2  3  2
+## 25 1 2 3 4 3 2 3 2 2  2  3  3  2  4  2  2  2  3  2  2  2  3  2  3  0  3  3  2  2  3  2  2  2  2  2  2  2  2
+##    39 40
+## 1   2  2
+## 2   3  2
+## 3   4  3
+## 4   5  1
+## 5   4  2
+## 6   3  1
+## 7   4  2
+## 8   3  2
+## 9   3  1
+## 10  3  3
+## 11  4  3
+## 12  3  3
+## 13  3  3
+## 14  5  3
+## 15  3  2
+## 16  3  3
+## 17  1  3
+## 18  3  2
+## 19  3  2
+## 20  3  2
+## 21  3  2
+## 22  4  1
+## 23  3  2
+## 24  4  1
+## 25  3  3
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 15 rows ]</code></pre>
+</div>
+<div id="clustering-and-more-graphs" class="section level3">
+<h3>Clustering and more graphs!</h3>
+<pre class="r"><code>ceb &lt;- cluster_edge_betweenness(newnetwork)
+dendPlot(ceb, mode=&quot;hclust&quot;)</code></pre>
+<p><img src="hw10_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>plot(ceb, newnetwork, vertex.size = 3, edge.arrow.size = 0.2)</code></pre>
+<p><img src="hw10_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<pre class="r"><code>clp &lt;- cluster_label_prop(newnetwork)
+plot(clp, newnetwork, newnetwork, vertex.size = 3, edge.arrow.size = 0.2)</code></pre>
+<pre><code>## Warning in symbols(x = coords[, 1], y = coords[, 2], bg = vertex.color, : supplied color is neither numeric
+## nor character
+
+## Warning in symbols(x = coords[, 1], y = coords[, 2], bg = vertex.color, : supplied color is neither numeric
+## nor character
+
+## Warning in symbols(x = coords[, 1], y = coords[, 2], bg = vertex.color, : supplied color is neither numeric
+## nor character
+
+## Warning in symbols(x = coords[, 1], y = coords[, 2], bg = vertex.color, : supplied color is neither numeric
+## nor character
+
+## Warning in symbols(x = coords[, 1], y = coords[, 2], bg = vertex.color, : supplied color is neither numeric
+## nor character
+
+## Warning in symbols(x = coords[, 1], y = coords[, 2], bg = vertex.color, : supplied color is neither numeric
+## nor character
+
+## Warning in symbols(x = coords[, 1], y = coords[, 2], bg = vertex.color, : supplied color is neither numeric
+## nor character
+
+## Warning in symbols(x = coords[, 1], y = coords[, 2], bg = vertex.color, : supplied color is neither numeric
+## nor character
+
+## Warning in symbols(x = coords[, 1], y = coords[, 2], bg = vertex.color, : supplied color is neither numeric
+## nor character
+
+## Warning in symbols(x = coords[, 1], y = coords[, 2], bg = vertex.color, : supplied color is neither numeric
+## nor character</code></pre>
+<p><img src="hw10_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
+</div>
+<div id="assortativity" class="section level3">
+<h3>Assortativity</h3>
+<p>The assortativity value of 0.06 suggests respondents are not well connected to other respondents who are well connected.</p>
+<p>The assortativity value of introversion of 0.02 suggests that respondents in the network are not similar according to how they report their introversion vs extroversion.</p>
+<pre class="r"><code>node &lt;- hw_nodelist
+node[is.na(node)] &lt;- -1
+
+net &lt;- graph_from_data_frame(d = hw_edgelist, vertices = node, directed = TRUE)
+
+assortativity_degree(net, directed=T)</code></pre>
+<pre><code>## [1] 0.06026113</code></pre>
+<pre class="r"><code>assortativity(net, V(net)$Introversion, directed=T)</code></pre>
+<pre><code>## [1] 0.02374215</code></pre>
+</div>
+</div>
+<div id="calculate-measures-of-centrality-and-similarity-in-networks-depending-on-the-type-of-tie-which-tie-type-generates-the-most-similar-network-in-terms-of-introversion-which-tie-type-is-the-most-dissimilar" class="section level1">
+<h1>2) Calculate measures of centrality and similarity in networks depending on the type of tie? Which tie type generates the most similar network in terms of introversion? Which tie type is the most dissimilar?</h1>
+</div>
+<div id="do-introverts-tend-to-be-at-the-periphery-while-extraverts-are-in-the-center-of-the-network-motivate." class="section level1">
+<h1>3) Do introverts tend to be at the periphery while extraverts are in the center of the network? Motivate.</h1>
+<p>As stated, there are three options for introversion per our dataset: 1. Introverted, 2. Middle ground, and 3. Extraverted.</p>
+<p>Copied from above: The assortativity value of introversion of 0.02 suggests that respondents in the network are not similar according to how they report their introversion vs extroversion.</p>
+<pre class="r"><code># Generate colors based on Introversion status:
+
+colrs &lt;- c(&quot;blue&quot;, &quot;red&quot;, &quot;gold&quot;)
+
+V(newnetwork)$color &lt;- colrs[V(newnetwork)$Introversion]
+
+plot(newnetwork, edge.arrow.size = 0.1, vertex.size = 10, vertex.label.dist=1.5)
+
+legend(x=-1.5, y=-1.1, c(&quot;Introverted&quot;,&quot;Middle Ground&quot;, &quot;Extraverted&quot;), pch=21,
+
+       col=&quot;#777777&quot;, pt.bg=colrs, pt.cex=2, cex=.8, bty=&quot;n&quot;, ncol=1)</code></pre>
+<p><img src="hw10_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
