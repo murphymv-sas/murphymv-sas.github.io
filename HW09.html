@@ -287,10 +287,16 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="project.html">Project</a>
+  <a href="project.html">HW9</a>
 </li>
 <li>
   <a href="about.html">About</a>
+</li>
+<li>
+  <a href="hw10.html">HW10</a>
+</li>
+<li>
+  <a href="finalproject.html">Final Project</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -346,7 +352,7 @@ setwd(&quot;C:/Users/mikem/OneDrive - PennO365/BDS 516/murphymv-sas.github.io&qu
 
 elon = read_csv(&#39;elonmusk_tweets.csv&#39;)</code></pre>
 <pre><code>## 
-## -- Column specification ---------------------------------------------------------------------
+## -- Column specification -------------------------------------------------------------------------------------
 ## cols(
 ##   id = col_double(),
 ##   source = col_character(),
@@ -359,7 +365,7 @@ elon = read_csv(&#39;elonmusk_tweets.csv&#39;)</code></pre>
 
 cook = read_csv(&#39;tim_cook_tweets.csv&#39;)</code></pre>
 <pre><code>## 
-## -- Column specification ---------------------------------------------------------------------
+## -- Column specification -------------------------------------------------------------------------------------
 ## cols(
 ##   id = col_double(),
 ##   source = col_character(),
@@ -525,27 +531,29 @@ predictingtree &lt;- predictingtree %&gt;%
 <pre><code>## Joining, by = &quot;word&quot;</code></pre>
 <pre class="r"><code>predictingtree</code></pre>
 <pre><code>## # A tibble: 3,835 x 11
-##         id source   created_at          favorite_count retweet_count user  picture pic_binary
-##      &lt;dbl&gt; &lt;chr&gt;    &lt;dttm&gt;                       &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;
-##  1 1.38e18 Twitter~ 2021-04-11 15:48:58          71696          1528 Elon  No pic~          0
-##  2 1.38e18 Twitter~ 2021-04-11 15:48:58          71696          1528 Elon  No pic~          0
-##  3 1.38e18 Twitter~ 2021-04-11 14:49:38           1394            48 Elon  No pic~          0
-##  4 1.38e18 Twitter~ 2021-04-10 23:56:43           2542            65 Elon  No pic~          0
-##  5 1.38e18 Twitter~ 2021-04-10 23:54:51           2631           202 Elon  No pic~          0
-##  6 1.38e18 Twitter~ 2021-04-10 19:49:26           4606           154 Elon  No pic~          0
-##  7 1.38e18 Twitter~ 2021-04-10 19:46:36           8486           221 Elon  No pic~          0
-##  8 1.38e18 Twitter~ 2021-04-10 08:32:35           2313           114 Elon  No pic~          0
-##  9 1.38e18 Twitter~ 2021-04-10 08:23:03           3302           262 Elon  No pic~          0
-## 10 1.38e18 Twitter~ 2021-04-10 08:23:03           3302           262 Elon  No pic~          0
-## # ... with 3,825 more rows, and 3 more variables: hour &lt;int&gt;, word &lt;chr&gt;, value &lt;dbl&gt;</code></pre>
+##         id source created_at          favorite_count retweet_count user  picture pic_binary  hour word  value
+##      &lt;dbl&gt; &lt;chr&gt;  &lt;dttm&gt;                       &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
+##  1 1.38e18 Twitt~ 2021-04-11 15:48:58          71696          1528 Elon  No pic~          0    15 love      3
+##  2 1.38e18 Twitt~ 2021-04-11 15:48:58          71696          1528 Elon  No pic~          0    15 beau~     3
+##  3 1.38e18 Twitt~ 2021-04-11 14:49:38           1394            48 Elon  No pic~          0    14 trust     1
+##  4 1.38e18 Twitt~ 2021-04-10 23:56:43           2542            65 Elon  No pic~          0    23 haha      3
+##  5 1.38e18 Twitt~ 2021-04-10 23:54:51           2631           202 Elon  No pic~          0    23 enga~     1
+##  6 1.38e18 Twitt~ 2021-04-10 19:49:26           4606           154 Elon  No pic~          0    19 good      3
+##  7 1.38e18 Twitt~ 2021-04-10 19:46:36           8486           221 Elon  No pic~          0    19 pret~     1
+##  8 1.38e18 Twitt~ 2021-04-10 08:32:35           2313           114 Elon  No pic~          0     8 best      3
+##  9 1.38e18 Twitt~ 2021-04-10 08:23:03           3302           262 Elon  No pic~          0     8 incr~     1
+## 10 1.38e18 Twitt~ 2021-04-10 08:23:03           3302           262 Elon  No pic~          0     8 worth     2
+## # ... with 3,825 more rows</code></pre>
 <pre class="r"><code>#amazing wordcloud
 predictingtree %&gt;%
   anti_join(stop_words) %&gt;%
   count(word) %&gt;%
   with(wordcloud(word, n, max.words = 100))</code></pre>
 <pre><code>## Joining, by = &quot;word&quot;</code></pre>
-<pre><code>## Warning in wordcloud(word, n, max.words = 100): congratulations could not be fit on page. It
-## will not be plotted.</code></pre>
+<pre><code>## Warning in wordcloud(word, n, max.words = 100): happy could not be fit on page. It will not be plotted.</code></pre>
+<pre><code>## Warning in wordcloud(word, n, max.words = 100): congratulations could not be fit on page. It will not be
+## plotted.</code></pre>
+<pre><code>## Warning in wordcloud(word, n, max.words = 100): proud could not be fit on page. It will not be plotted.</code></pre>
 <p><img src="HW09_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <div id="we-split-our-data-into-train-data-tree_train-and-test-data-for-later-use-tree_test.-then-we-generate-a-decision-tree-first-using-tree_train." class="section level4">
 <h4>We split our data into train data, <code>tree_train</code>, and test data for later use, <code>tree_test</code>. Then, we generate a decision tree, first using <code>tree_train</code>.</h4>
@@ -610,7 +618,7 @@ confusionMatrix(as.factor(tree_test$user), as.factor(tweet_predict))</code></pre
 <p>85% of tweets that have very negative sentiment (less than -3 per the AFINN scale) and have no pictures/links have a 14% chance of being tweeted by Joe. 14% of tweets that have a sentiment larger than -3 and have no pictures/links have a 86% chance of being tweeted by Jojo.</p>
 <pre class="r"><code>rogan = read_csv(&#39;joerogan_tweets.csv&#39;)</code></pre>
 <pre><code>## 
-## -- Column specification ---------------------------------------------------------------------
+## -- Column specification -------------------------------------------------------------------------------------
 ## cols(
 ##   id = col_double(),
 ##   source = col_character(),
@@ -623,7 +631,7 @@ confusionMatrix(as.factor(tree_test$user), as.factor(tweet_predict))</code></pre
 
 siwa = read_csv(&#39;itsjojosiwa_tweets.csv&#39;)</code></pre>
 <pre><code>## 
-## -- Column specification ---------------------------------------------------------------------
+## -- Column specification -------------------------------------------------------------------------------------
 ## cols(
 ##   id = col_double(),
 ##   source = col_character(),
@@ -664,19 +672,19 @@ other_tree &lt;- other_tree %&gt;%
 <pre><code>## Joining, by = &quot;word&quot;</code></pre>
 <pre class="r"><code>other_tree</code></pre>
 <pre><code>## # A tibble: 4,276 x 11
-##         id source  created_at          favorite_count retweet_count user  picture  pic_binary
-##      &lt;dbl&gt; &lt;chr&gt;   &lt;dttm&gt;                       &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;         &lt;dbl&gt;
-##  1 1.38e18 Instag~ 2021-04-17 01:35:41            997            52 Joe   Picture~          1
-##  2 1.38e18 Instag~ 2021-04-07 19:24:58           1542            87 Joe   Picture~          1
-##  3 1.38e18 Instag~ 2021-04-07 19:24:58           1542            87 Joe   Picture~          1
-##  4 1.38e18 Instag~ 2021-04-07 19:24:58           1542            87 Joe   Picture~          1
-##  5 1.37e18 Instag~ 2021-03-19 19:09:01            974            60 Joe   Picture~          1
-##  6 1.37e18 Instag~ 2021-03-19 19:09:01            974            60 Joe   Picture~          1
-##  7 1.37e18 Instag~ 2021-03-17 21:35:28            935            49 Joe   Picture~          1
-##  8 1.37e18 Instag~ 2021-03-17 21:35:28            935            49 Joe   Picture~          1
-##  9 1.37e18 Instag~ 2021-03-16 22:49:07            911            54 Joe   Picture~          1
-## 10 1.37e18 Instag~ 2021-03-16 22:49:07            911            54 Joe   Picture~          1
-## # ... with 4,266 more rows, and 3 more variables: hour &lt;int&gt;, word &lt;chr&gt;, value &lt;dbl&gt;</code></pre>
+##         id source created_at          favorite_count retweet_count user  picture pic_binary  hour word  value
+##      &lt;dbl&gt; &lt;chr&gt;  &lt;dttm&gt;                       &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
+##  1 1.38e18 Insta~ 2021-04-17 01:35:41            997            52 Joe   Pictur~          1     1 die      -3
+##  2 1.38e18 Insta~ 2021-04-07 19:24:58           1542            87 Joe   Pictur~          1    19 great     3
+##  3 1.38e18 Insta~ 2021-04-07 19:24:58           1542            87 Joe   Pictur~          1    19 fant~     4
+##  4 1.38e18 Insta~ 2021-04-07 19:24:58           1542            87 Joe   Pictur~          1    19 grea~     3
+##  5 1.37e18 Insta~ 2021-03-19 19:09:01            974            60 Joe   Pictur~          1    19 great     3
+##  6 1.37e18 Insta~ 2021-03-19 19:09:01            974            60 Joe   Pictur~          1    19 powe~     2
+##  7 1.37e18 Insta~ 2021-03-17 21:35:28            935            49 Joe   Pictur~          1    21 great     3
+##  8 1.37e18 Insta~ 2021-03-17 21:35:28            935            49 Joe   Pictur~          1    21 hila~     2
+##  9 1.37e18 Insta~ 2021-03-16 22:49:07            911            54 Joe   Pictur~          1    22 honor     2
+## 10 1.37e18 Insta~ 2021-03-16 22:49:07            911            54 Joe   Pictur~          1    22 plea~     3
+## # ... with 4,266 more rows</code></pre>
 <pre class="r"><code>#incredible wordcloud
 other_tree %&gt;%
   anti_join(stop_words) %&gt;%

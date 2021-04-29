@@ -5,11 +5,15 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Project"
+    - text: "HW9"
       href: project.html
     - text: "About"
       href: about.html
-
+    - text: "HW10"
+      href: hw10.html      
+    - text: "Final Project"
+      href: finalproject.html
+      
 output:
   html_document:
     theme: simplex
