@@ -1,0 +1,156 @@
+---
+title: "hw10"
+author: "Electric Eels: Walid Hedidar, Aamia Malik, Michael Murphy, Jon Sirota, Cory Winkler, Jen Xue"
+date: "4/26/2021"
+output: html_document
+---
+
+[SCRAP THIS] The options for each name are the following:
+
+1. I have texted in the last 7 days
+
+2. I have met during my time in MBDS
+
+3. Is my friend
+
+4. I ask for advice/help
+
+5. Asks me for help/advice
+
+--
+
+
+In this report, we are interested in conducting a network analysis among the BDS-516 Spring 2021 class. First, we import the data and set up the relevant libraries (`include = FALSE`). 
+
+
+# 1) Prepare the data for the network analysis (create a separate edge and node list)
+We beginw with our separate node and edge lists, titled `hw_nodelist` and `hw_edgelist`.
+
+```{r include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(readxl)
+library(tidyverse)
+
+setwd("C:/Users/mikem/OneDrive - PennO365/BDS 516/murphymv-sas.github.io")
+hw_nodelist <- read_excel('hw10_clean.xlsx', sheet = "Node") 
+hw_edgelist <- read_excel('hw10_clean.xlsx', sheet = "Edge") %>% lapply(as.numeric) %>% data.frame
+
+```
+
+
+### Network graphical visualization
+Here, we show ....
+
+There are a few key insights from this visualization:
+1) This appears to resemble a scale-free network (some respondents do not know others in the network well, while others appear to know many others)
+2) Respondent 39 appears to be the least connected to the rest of the network
+```{r}
+library(igraph)
+
+newnetwork <- graph_from_data_frame(d = hw_edgelist, vertices = hw_nodelist, directed = TRUE)
+plot(newnetwork, edge.arrow.size = 0.1, vertex.size = 3)
+
+```
+
+
+### Descriptive stats
+The network has a reciprocity and transitivity of ~0.5, suggesting that about half of the time, a respondent in the network indicated being directly and indirectly tied to someone else, when the respondent on the other end did not agree. This may partially be the result of measurement error. 
+
+```{r}
+edge_density(newnetwork, loops=F)
+reciprocity(newnetwork)
+transitivity(newnetwork, type="global")
+diameter(newnetwork, directed=F, weights=NA)
+
+deg <- degree(newnetwork, mode="all")
+mean(deg)
+plot(newnetwork, vertex.size=deg/10, edge.arrow.size = 0.1)
+hist(deg, breaks = 20, main="Histogram of node degree")
+
+```
+
+### Distances
+Centralization of 0.735 suggests that the network is relatively highly centralized around particiular respondents; in other words, certain respondents are common "connections" to the rest of the network. 
+```{r}
+
+degree(newnetwork, mode="in")
+centr_degree(newnetwork, mode="in", normalized=T)
+
+
+closeness(newnetwork, mode="all", weights=NA)
+
+betweenness(newnetwork, directed=T, weights=NA)
+
+
+mean_distance(newnetwork, directed=T)
+distances(newnetwork, weights=NA)
+
+```
+
+
+
+### Clustering and more graphs!
+```{r}
+ceb <- cluster_edge_betweenness(newnetwork)
+dendPlot(ceb, mode="hclust")
+plot(ceb, newnetwork, vertex.size = 3, edge.arrow.size = 0.2)
+
+clp <- cluster_label_prop(newnetwork)
+plot(clp, newnetwork, newnetwork, vertex.size = 3, edge.arrow.size = 0.2)
+
+```
+
+
+### Assortativity
+The assortativity value of 0.06 suggests respondents are not well connected to other respondents who are well connected.
+
+The assortativity value of introversion of 0.02 suggests that respondents in the network are not similar according to how they report their introversion vs extroversion. 
+```{r}
+node <- hw_nodelist
+node[is.na(node)] <- -1
+
+net <- graph_from_data_frame(d = hw_edgelist, vertices = node, directed = TRUE)
+
+assortativity_degree(net, directed=T)
+
+assortativity(net, V(net)$Introversion, directed=T)
+
+```
+
+
+
+# 2) Calculate measures of centrality and similarity in networks depending on the type of tie? Which tie type generates the most similar network in terms of introversion? Which tie type is the most dissimilar?
+
+```{r}
+
+```
+
+
+
+# 3) Do introverts tend to be at the periphery while extraverts are in the center of the network? Motivate.
+As stated, there are three options for introversion per our dataset: 1. Introverted, 2. Middle ground, and 3. Extraverted. 
+
+Copied from above: The assortativity value of introversion of 0.02 suggests that respondents in the network are not similar according to how they report their introversion vs extroversion.
+
+
+```{r}
+# Generate colors based on Introversion status:
+
+colrs <- c("blue", "red", "gold")
+
+V(newnetwork)$color <- colrs[V(newnetwork)$Introversion]
+
+plot(newnetwork, edge.arrow.size = 0.1, vertex.size = 10, vertex.label.dist=1.5)
+
+legend(x=-1.5, y=-1.1, c("Introverted","Middle Ground", "Extraverted"), pch=21,
+
+       col="#777777", pt.bg=colrs, pt.cex=2, cex=.8, bty="n", ncol=1)
+
+```
+
+
+
+
+
+
