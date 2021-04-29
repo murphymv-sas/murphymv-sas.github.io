@@ -334,32 +334,9 @@ $(document).ready(function () {
 <h3>Network graphical visualization</h3>
 <p>Here, we show ….</p>
 <p>There are a few key insights from this visualization: 1) This appears to resemble a scale-free network (some respondents do not know others in the network well, while others appear to know many others) 2) Respondent 39 appears to be the least connected to the rest of the network</p>
-<pre class="r"><code>library(igraph)</code></pre>
-<pre><code>## Warning: package &#39;igraph&#39; was built under R version 4.0.4</code></pre>
-<pre><code>## 
-## Attaching package: &#39;igraph&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:lubridate&#39;:
-## 
-##     %--%, union</code></pre>
-<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     as_data_frame, groups, union</code></pre>
-<pre><code>## The following objects are masked from &#39;package:purrr&#39;:
-## 
-##     compose, simplify</code></pre>
-<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
-## 
-##     crossing</code></pre>
-<pre><code>## The following object is masked from &#39;package:tibble&#39;:
-## 
-##     as_data_frame</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     decompose, spectrum</code></pre>
-<pre><code>## The following object is masked from &#39;package:base&#39;:
-## 
-##     union</code></pre>
-<pre class="r"><code>newnetwork &lt;- graph_from_data_frame(d = hw_edgelist, vertices = hw_nodelist, directed = TRUE)
+<pre class="r"><code>library(igraph)
+
+newnetwork &lt;- graph_from_data_frame(d = hw_edgelist, vertices = hw_nodelist, directed = TRUE)
 plot(newnetwork, edge.arrow.size = 0.1, vertex.size = 3)</code></pre>
 <p><img src="hw10_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
