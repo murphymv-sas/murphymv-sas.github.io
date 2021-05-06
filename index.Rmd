@@ -9,12 +9,10 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Welcome! Please see a brief description of the project below, and visit the Project Tab for the full report.  
+## Welcome! Please see a brief description of the projects below, and visit the respective tabs for the full reports. This is a collection of recent projects created by BDS-516 students at the University of Pennsylvania. The instructor is Professor Alex Shpenev.
 
-#### On this website, you will find a recent project created by BDS-516 students at the University of Pennsylvania. For this assignment, we are interested in the comparing tweets from **Elon Musk** and **Tim Cook**. Our main research question is the following: *How do tweets from Elon Musk and Tim Cook differ?*. Before starting the research process, we hypothesize that there would be a large difference in the sentiment of tweets; that is, we postulate that tweets from Elon will contain more extreme sentiments than those from Tim. Additionally, we expect that Elon may have more tweets with pictures while also tweeting at more sproradic and unconventional times of the day in comparison to Tim.  
+#### In the *HW9* this assignment, we are interested in the comparing tweets from **Elon Musk** and **Tim Cook**. Our main research question is the following: *How do tweets from Elon Musk and Tim Cook differ?*. Before starting the research process, we hypothesize that there would be a large difference in the sentiment of tweets; that is, we postulate that tweets from Elon will contain more extreme sentiments than those from Tim. Additionally, we expect that Elon may have more tweets with pictures while also tweeting at more sproradic and unconventional times of the day in comparison to Tim.    
 
-#### In sum, we have three hypotheses:  
+#### In the *HW10* assignment, we are interested in conducting a network analysis among the BDS-516 Spring 2021 class.
 
-#### 1. Elon will have more extreme sentiment in his tweets, compared to Tim  
-#### 2. Tim will have fewer tweets with pictures/links, compared to Elon  
-#### 3. Elon will have more sporadic tweeting patterns, compared to Tim
+#### In the *Final Project*, we make several analyses about smoking and tobacco data in the United States. We explore trends for each drug as well as substitution behavior between the two.
